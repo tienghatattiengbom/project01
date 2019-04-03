@@ -1,0 +1,43 @@
+.add-employees{
+	margin-left: 20px;
+	margin-bottom: 20px
+}
+
+.label-form{
+	text-align: center;
+}
+.input-form{
+	border-radius: 5px;
+}
+table.table-bordered td:last-child a {
+	flex: 1;
+}
+table.table-bordered td:last-child {
+    display: flex;
+}
+.box-body{
+	text-align: center
+}
+.title-row{
+	padding: 7px;
+	/*background-color: #ccc;*/
+	border-right: 1px solid #ccc;
+}
+.content-row{
+	/*margin-top: 7px;*/
+}
+.box-body{
+	padding:0px ;
+}
+.clearfix{
+	border-bottom: 1px solid #ccc;
+}
+.row{
+	margin:10px;
+}
+.has-error{
+	border-color: red;
+}
+th{
+	text-align: center;
+}
