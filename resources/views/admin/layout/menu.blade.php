@@ -5,10 +5,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/admin_asset/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/admin_asset/dist/img/avatar04.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Sơn Nguyễn</p>
+          <p>{{ Auth::user()->name }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -49,8 +49,14 @@
             <span>QUẢN LÝ LƯƠNG</span>
           </a>
         </li>
-
-
+        <?php if (Auth::user()->rule == 1): ?>
+            <li class="treeview {{(\Request::route()->getName() == 'user') ? 'active' : ''}} ">
+              <a href="/admin/user">
+                <i class="fa fa-files-o"></i>
+                <span>QUẢN LÝ USER</span>
+              </a>
+            </li>
+        <?php endif ?>
       </ul>
     </section>
     <!-- /.sidebar -->

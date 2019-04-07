@@ -15,9 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/user/{id}', 'UserController@index');
 
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 
 	Route::get('/', function(){
 		echo "Hello World";
@@ -60,4 +59,15 @@ Route::group(['prefix' => 'admin'],function(){
 		Route::match(['get', 'post'], '/create/', 'LuongController@create');
 	});
 
+
+	Route::group(['prefix' => 'user','as'=>'user'],function(){
+		Route::get('/', 'UserController@index');
+		Route::match(['get', 'post'], '/create/', 'UserController@create');
+		Route::match(['get', 'post'], '/update/{id}', 'UserController@update')->where('id','[0-9]+');
+	});
+	
 });
+Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+
