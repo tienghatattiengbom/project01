@@ -71,4 +71,10 @@ class ChamcongController extends Controller
    
         return response()->json($data);
     }
+
+    public function destroy($id){
+        $nhansu = \App\Chamcong::destroy($id);
+        \Session::flash('success','Xóa thành công');
+        return redirect(route('chamcongindex'));
+    }
 }

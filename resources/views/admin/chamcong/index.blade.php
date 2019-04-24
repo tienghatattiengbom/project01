@@ -43,8 +43,8 @@
 								<td>{{!empty($chamcong->end_time) ? date('H:i:s', strtotime($chamcong->end_time)) : ""}}</td>
 								<td>{{$chamcong->note}}</td>
 								<td>
-									<a href="/admin/chamcong/show/{{$chamcong->id}}" ><i class="fas fa-eye"></i></a> 
-									<a href="/admin/chamcong/update/{{$chamcong->id}}" ><i class="fas fa-pencil-alt"></i></a>
+									<!-- <a href="/admin/chamcong/show/{{$chamcong->id}}" ><i class="fas fa-eye"></i></a>  -->
+									<!-- <a href="/admin/chamcong/update/{{$chamcong->id}}" ><i class="fas fa-pencil-alt"></i></a> -->
 									<a href="/admin/chamcong/delete/{{$chamcong->id}}" ><i class="fas fa-trash-alt"></i></a>
 								</td>
 							</tr>

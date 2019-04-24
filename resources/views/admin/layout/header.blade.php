@@ -42,7 +42,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{route('reset')}}" class="btn btn-default btn-flat">Rs hệ thống</a>
                 </div>
                 <div class="pull-right">
                   <a class="btn btn-default btn-flat" href="{{ route('logout') }}" class = "" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

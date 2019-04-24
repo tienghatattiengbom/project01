@@ -92,7 +92,9 @@ class ThuongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $nhansu = \App\Thuong::destroy($id);
+        \Session::flash('success','Xóa thành công');
+        return redirect(route('thuongindex'));
     }
 
     public function keeping(Request $request){

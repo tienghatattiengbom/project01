@@ -141,8 +141,11 @@ class NhansuController extends Controller
      * @param  \App\Nhansu  $nhansu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nhansu $nhansu)
+    public function destroy($id)
     {
-        //
+        
+        $nhansu = Nhansu::destroy($id);
+        \Session::flash('success','Xóa thành công');
+        return redirect(route('nhansuindex'));
     }
 }

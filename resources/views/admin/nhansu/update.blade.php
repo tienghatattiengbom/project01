@@ -81,6 +81,32 @@
             <?= Form::select('sex', ['M' => 'Nam', 'F' => 'Nữ'],$nhansu->sex,['class' => 'form-control input-form'])?>
           </div>
         </div>
+
+        <div class="form-group row">
+          <div class="col-md-3 label-form">
+            <?= Form::label('salary_basic', 'Lương cơ bản') ?>
+          </div>
+          <div class="col-md-8">
+            <?= Form::text('salary_basic' ,$nhansu->salary_basic,['class' => 'form-control input-form','onkeyup' => 'FormatNumber(this)'])?>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-3 label-form">
+            <?= Form::label('start_date', 'Ngày bắt đầu') ?>
+          </div>
+
+          <div class="col-md-8">
+            <div class="input-group date">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <?= Form::text('start_date',null,['class' => 'form-control input-form pull-right',"id"=>"datepicker"])?>
+            </div>
+            
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-md-offset-10 col-md-1">
             <?= Form::submit('Submit',['class' => 'btn btn-success'])?>

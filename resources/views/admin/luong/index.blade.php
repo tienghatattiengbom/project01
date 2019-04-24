@@ -37,7 +37,7 @@
 						    <tr>
 								<td>{{$luong->nhansus->name}}</td>
 								<td>{{date('m-Y', strtotime($luong->date))}}</td>
-								<td>{{$luong->luong}}</td>
+								<td>{{number_format($luong->luong)}}</td>
 								<td>{{$luong->ngay_cong}}</td>
 							</tr>
 						@endforeach

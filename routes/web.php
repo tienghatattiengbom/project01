@@ -12,19 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('admin'));
 });
 
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 
-	Route::get('/', function(){
-		echo "Hello World";
-	});
+	Route::get('/', 'DasController@index')->name('admin');
 
-	Route::group(['prefix' => 'nhansu','as'=>'nhansu'],function(){
-		Route::get('/', 'NhansuController@index');	
+	Route::group(['prefix' => 'nhansu'],function(){
+		Route::get('/', 'NhansuController@index')->name('nhansuindex');
 		Route::get('/show/{id}', 'NhansuController@show')->where('id', '[0-9]+');
+		Route::get('/delete/{id}', 'NhansuController@destroy')->where('id', '[0-9]+');
 		Route::match(['get', 'post'], '/update/{id}', 'NhansuController@update')->where('id', '[0-9]+');
 		Route::get('/create', 'NhansuController@create');
 		Route::post('/create', 'NhansuController@store');
@@ -32,10 +31,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 
 
 
-	Route::group(['prefix' => 'chamcong','as'=>'chamcong'],function(){
-		Route::get('/', 'ChamcongController@index');
+	Route::group(['prefix' => 'chamcong'],function(){
+		Route::get('/', 'ChamcongController@index')->name('chamcongindex');
 		Route::get('/create', 'ChamcongController@create');
 		Route::get('/keeping', 'ChamcongController@keeping');
+		Route::get('/delete/{id}', 'ChamcongController@destroy');
 		// Route::get('/show/{id}', 'NhansuController@show')->where('id', '[0-9]+');
 		// Route::match(['get', 'post'], '/update/{id}', 'NhansuController@update')->where('id', '[0-9]+');
 		// Route::get('/create', 'NhansuController@create');
@@ -43,11 +43,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 	});
 	Route::get('/autocomplete', 'ChamcongController@autocomplete')->name('autocomplete');
 
-	Route::group(['prefix' => 'thuong','as'=>'thuong'],function(){
-		Route::get('/', 'ThuongController@index');
+	Route::group(['prefix' => 'thuong'],function(){
+		Route::get('/', 'ThuongController@index')->name('thuongindex');
 		Route::get('/create', 'ThuongController@create');
 		Route::get('/keeping', 'ThuongController@keeping');
 		Route::get('/show/{id}', 'ThuongController@show')->where('id', '[0-9]+');
+		Route::get('/delete/{id}', 'ThuongController@destroy')->where('id', '[0-9]+');
 		Route::match(['get', 'post'], '/update/{id}', 'ThuongController@update')->where('id', '[0-9]+');
 	});
 
@@ -65,6 +66,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 		Route::match(['get', 'post'], '/create/', 'UserController@create');
 		Route::match(['get', 'post'], '/update/{id}', 'UserController@update')->where('id','[0-9]+');
 	});
+
+	Route::get('/reset','DasController@reset')->name('reset');
 	
 });
 Route::get('/home', 'HomeController@index')->name('home');
