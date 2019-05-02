@@ -49,6 +49,14 @@
             <span>QUẢN LÝ LƯƠNG</span>
           </a>
         </li>
+
+        <li class="treeview {{(\Request::route()->getName() == 'phongban') ? 'active' : ''}} ">
+          <a href="/admin/phongban">
+            <i class="fa fa-files-o"></i>
+            <span>QUẢN LÝ PHÒNG BAN</span>
+          </a>
+        </li>
+
         <?php if (Auth::user()->rule == 1): ?>
             <li class="treeview {{(\Request::route()->getName() == 'user') ? 'active' : ''}} ">
               <a href="/admin/user">

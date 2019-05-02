@@ -67,6 +67,20 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 		Route::match(['get', 'post'], '/update/{id}', 'UserController@update')->where('id','[0-9]+');
 	});
 
+	Route::group(['prefix' => 'phongban'],function(){
+		Route::get('/', 'PhongbanController@index');
+		Route::match(['get', 'post'], '/create/', 'PhongbanController@create');
+		Route::get('/show/{id}', 'PhongbanController@show')->where('id', '[0-9]+');
+		Route::match(['get', 'post'], '/update/{id}', 'PhongbanController@update')->where('id','[0-9]+');
+	});
+
+	Route::group(['prefix' => 'sobaohiem'],function(){
+		Route::get('/', 'SobaohiemController@index');
+		Route::match(['get', 'post'], '/create/', 'SobaohiemController@create');
+		Route::get('/show/{id}', 'SobaohiemController@show')->where('id', '[0-9]+');
+		Route::match(['get', 'post'], '/update/{id}', 'SobaohiemController@update')->where('id','[0-9]+');
+	});
+
 	Route::get('/reset','DasController@reset')->name('reset');
 	
 });

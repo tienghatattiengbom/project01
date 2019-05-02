@@ -122,15 +122,39 @@
 
 
 @section('script')
-    <script src="/admin_asset/plugins/select2/select2.full.min.js"></script>
-    <script src="/admin_asset/plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="/admin_asset/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="/admin_asset/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="../../admin_asset/plugins/select2/select2.full.min.js"></script>
+    <script src="../../admin_asset/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="../../admin_asset/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="../../admin_asset/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="../../admin_asset/plugins/datepicker/bootstrap-datepicker.js"></script>
 
     <script>
       $(function () {
-        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-        $("[data-mask]").inputmask();
-      });
+          $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+          $("[data-mask]").inputmask();
+        });
+        $('#datepicker').datepicker({
+          autoclose: true,
+          format: 'dd/mm/yyyy'
+        });
+        function FormatNumber(obj) {
+          var strvalue;
+          if (eval(obj))
+              strvalue = eval(obj).value;
+          else
+              strvalue = obj;
+          var num;
+          num = strvalue.toString().replace(/\$|\,/g, '');
+          if (isNaN(num))
+                  num = "";
+          sign = (num == (num = Math.abs(num)));
+          num = Math.floor(num * 100 + 0.50000000001);
+          num = Math.floor(num / 100).toString();
+          for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+              num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+              num.substring(num.length - (4 * i + 3));
+              //return (((sign)?'':'-') + num);
+          eval(obj).value = (((sign) ? '' : '-') + num);
+      }
     </script>
 @endsection

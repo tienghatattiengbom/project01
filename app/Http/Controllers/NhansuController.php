@@ -129,7 +129,7 @@ class NhansuController extends Controller
             } catch (Exception $e) {
                  echo "<pre>"; echo $e->getMessage(); die;  // insert query
             }
-            return redirect('/nhansu');
+            return redirect('/admin/nhansu');
             
         }
         return view('admin.nhansu.update',['nhansu' => $nhansu]);
