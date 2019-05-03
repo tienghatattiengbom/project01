@@ -13,7 +13,10 @@ class HopdongController extends Controller
      */
     public function index()
     {
-        //
+        $hopdong = \App\Hopdong::get();
+        return view('admin.hopdong.index',[
+            'hopdongs' => $hopdong
+            ]);
     }
 
     /**
@@ -21,9 +24,36 @@ class HopdongController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+            $this->validate($request,[
+                    'nhansu_id' => 'required|unique:hopdongs',
+                    'ma_hd' => 'required|unique:hopdongs',
+                ],[
+                    'nhansu_id.unique' => 'Mỗi nhân viên chỉ có 1 sổ bảo hiểm',
+                    'ma_hd.unique' => 'Mã hợp đồng phải là duy nhất',
+            ]);
+            try {
+                $model_hopdong = new \App\Hopdong();
+                $model_hopdong->nhansu_id = $request->input('nhansu_id');
+                $model_hopdong->ma_hd = $request->input('ma_hd');
+                $model_hopdong->ten_hd = $request->input('ten_hd');
+                $model_hopdong->ngay_ki = $request->input('ngay_ki');
+                $model_hopdong->ngay_het_han = $request->input('ngay_het_han');
+                $model_hopdong->status = $request->input('status');
+                $model_hopdong->save();
+            } catch (Exception $e) {
+               echo "<pre>"; echo $e->getMessage(); die; 
+           }
+           return redirect('/admin/hopdong');
+        }else{
+            $model_nhansu = new \App\Nhansu();
+            $nhanviens = $model_nhansu->pluck('name','id');
+            return view('admin.hopdong.create',[
+                'nhanvien' => $nhanviens
+                ]);
+        }
     }
 
     /**
@@ -68,7 +98,37 @@ class HopdongController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->isMethod('post')) {
+            $this->validate($request,[
+                    'nhansu_id' => 'required|unique:hopdongs,nhansu_id,'.$id,
+                    'ma_hd' => 'required|unique:hopdongs,ma_hd,'.$id,
+                ],[
+                    'nhansu_id.unique' => 'Mỗi nhân viên chỉ có 1 hợp đồng',
+                    'ma_hd.unique' => 'Mã hợp đồng phải là duy nhất',
+            ]);
+            try {
+                $model_hopdong = \App\Hopdong::findOrFail($id);
+                $model_hopdong->nhansu_id = $request->input('nhansu_id');
+                $model_hopdong->ma_hd = $request->input('ma_hd');
+                $model_hopdong->ten_hd = $request->input('ten_hd');
+                $model_hopdong->ngay_ki = $request->input('ngay_ki');
+                $model_hopdong->ngay_het_han = $request->input('ngay_het_han');
+                $model_hopdong->status = $request->input('status');
+                $model_hopdong->save();
+            } catch (Exception $e) {
+               echo "<pre>"; echo $e->getMessage(); die; 
+           }
+           return redirect('/admin/hopdong');
+        }else{
+            $model_nhansu = new \App\Nhansu();
+            $nhanviens = $model_nhansu->pluck('name','id');
+            $hopdong = \App\Hopdong::findOrFail($id);
+            return view('admin.hopdong.update',[
+                'nhanvien' => $nhanviens,
+                'hopdong' => $hopdong
+                ]);
+        }
+        
     }
 
     /**
@@ -79,6 +139,8 @@ class HopdongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\Hopdong::destroy($id);
+        \Session::flash('success','Xóa thành công');
+        return redirect(route('hopdongindex'));
     }
 }

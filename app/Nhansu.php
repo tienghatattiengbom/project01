@@ -20,7 +20,7 @@ class Nhansu extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'addrees', 'phone', 'email', 'birthday', 'sex','salary_basic','start_date' ,'created_at', 'updated_at'];
+    protected $fillable = ['name', 'addrees', 'phone', 'email', 'birthday', 'sex','salary_basic','phongban_id' ,'created_at', 'updated_at'];
     public static $rules = [
         'email' => 'sometimes|required|email|unique:nhansus',
         'phone' => 'sometimes|required|unique:nhansus',

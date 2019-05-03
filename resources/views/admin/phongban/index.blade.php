@@ -37,7 +37,6 @@
 									<td>{{$phongban->ma_phongban}}</td>
 									<td>0{{$phongban->sdt_phongban}}</td>
 									<td>
-										<a href="/admin/phongban/show/{{$phongban->id}}" ><i class="fas fa-eye"></i></a> 
 										<a href="/admin/phongban/update/{{$phongban->id}}" ><i class="fas fa-pencil-alt"></i></a>
 										<a href="/admin/phongban/delete/{{$phongban->id}}" ><i class="fas fa-trash-alt"></i></a>
 									</td>

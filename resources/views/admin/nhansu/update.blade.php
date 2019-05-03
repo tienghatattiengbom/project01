@@ -93,19 +93,13 @@
 
         <div class="form-group row">
           <div class="col-md-3 label-form">
-            <?= Form::label('start_date', 'Ngày bắt đầu') ?>
+            <?= Form::label('phongban_id', 'Phòng ban') ?>
           </div>
-
           <div class="col-md-8">
-            <div class="input-group date">
-              <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-              </div>
-              <?= Form::text('start_date',null,['class' => 'form-control input-form pull-right',"id"=>"datepicker"])?>
-            </div>
-            
+            <?= Form::select('phongban_id', $phongban,$nhansu->phongban_id,['class' => 'form-control input-form'])?>
           </div>
         </div>
+
 
         <div class="row">
           <div class="col-md-offset-10 col-md-1">

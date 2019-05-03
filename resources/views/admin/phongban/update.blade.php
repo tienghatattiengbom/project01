@@ -8,7 +8,7 @@
 <section class="content row">
 	<div class="col-md-12" style="padding: 0px">
 		<div class="box box-primary" style="padding-bottom: 10px">
-			{!! Form::open(['method' => 'GET', 'url' => '/admin/phongban/create']) !!}
+			{!! Form::open(['method' => 'POST', 'url' => '/admin/phongban/update/'.$phongban->id]) !!}
 				<div class="form-group row" style="margin-top: 20px">
 					<div class="col-md-3 label-form">
 						<?= Form::label('ten_phongban', 'Tên Phòng Ban') ?>

@@ -8,7 +8,7 @@
 <section class="content row">
 	<div class="col-md-12" style="padding: 0px">
 		<div class="box box-primary" style="padding-bottom: 10px">
-			{!! Form::open(['method' => 'POST', 'url' => '/admin/sobaohiem/create']) !!}
+			{!! Form::open(['method' => 'POST', 'url' => '/admin/hopdong/create']) !!}
 				<div class="form-group row" style="margin-top: 20px">
 					<div class="col-md-3 label-form">
 						<?= Form::label('nhansu_id', 'Nhân viên') ?>
@@ -20,37 +20,46 @@
 
 				<div class="form-group row" style="margin-top: 20px">
 					<div class="col-md-3 label-form">
-						<?= Form::label('ma_sbh', 'Mã sổ bảo hiểm') ?>
+						<?= Form::label('ma_hd', 'Mã hợp đồng') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('ma_sbh',null,['class' => 'form-control input-form','required'=>'required']) ?>
+						<?= Form::text('ma_hd',null,['class' => 'form-control input-form','required'=>'required']) ?>
 					</div>
 				</div>
 
 				<div class="form-group row" style="margin-top: 20px">
 					<div class="col-md-3 label-form">
-						<?= Form::label('ngay_cap', 'Ngày Cấp (YYYY-mm-dd)') ?>
+						<?= Form::label('ten_hd', 'Tên hợp đồng') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('ngay_cap',null,['class' => 'form-control input-form','required'=>'required','id'=>'datemask']) ?>
+						<?= Form::text('ten_hd',null,['class' => 'form-control input-form','required'=>'required']) ?>
 					</div>
 				</div>
 
 				<div class="form-group row" style="margin-top: 20px">
 					<div class="col-md-3 label-form">
-						<?= Form::label('noi_cap', 'Nơi Cấp') ?>
+						<?= Form::label('ngay_ki', 'Ngày kí (YYYY-mm-dd)') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('noi_cap',null,['class' => 'form-control input-form','required'=>'required']) ?>
+						<?= Form::text('ngay_ki',null,['class' => 'form-control input-form','required'=>'required','id'=>'datemask']) ?>
 					</div>
 				</div>
 
 				<div class="form-group row" style="margin-top: 20px">
 					<div class="col-md-3 label-form">
-						<?= Form::label('note', 'Ghi chú') ?>
+						<?= Form::label('ngay_het_han', 'Ngày hết hạn (YYYY-mm-dd)') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('note',null,['class' => 'form-control input-form']) ?>
+						<?= Form::text('ngay_het_han',null,['class' => 'form-control input-form','required'=>'required','id'=>'datemask1']) ?>
+					</div>
+				</div>
+
+				<div class="form-group row" style="margin-top: 20px">
+					<div class="col-md-3 label-form">
+						<?= Form::label('status', 'Trạng thái') ?>
+					</div>
+					<div class="col-md-8">
+						<?= Form::select('status', [0=>'Không kích hoạt',1=>'Kích hoạt'],1,['class' => 'form-control input-form'])?>
 					</div>
 				</div>
 
@@ -76,6 +85,7 @@
     <script>
       $(function () {
           $("#datemask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
+          $("#datemask1").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
           $("[data-mask]").inputmask();
         });
         $('#datepicker').datepicker({

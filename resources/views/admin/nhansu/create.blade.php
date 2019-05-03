@@ -17,7 +17,7 @@
         <div class="box-header with-border">
           <h3 class="box-title">Thêm mới nhân sự</h3>
         </div>
-        {!! Form::open(['method' => 'POST', 'url' => '/admin/nhansu/create', 'id'=>'form-nhansu']) !!}
+        {!! Form::open(['method' => 'POST', 'url' => '/admin/nhansu/store', 'id'=>'form-nhansu']) !!}
 
         <div class="form-group row" style="margin-top: 20px">
           <div class="col-md-3 label-form">
@@ -94,19 +94,14 @@
 
         <div class="form-group row">
           <div class="col-md-3 label-form">
-            <?= Form::label('start_date', 'Ngày bắt đầu') ?>
+            <?= Form::label('phongban_id', 'Giới tính') ?>
           </div>
-
           <div class="col-md-8">
-            <div class="input-group date">
-              <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-              </div>
-              <?= Form::text('start_date',null,['class' => 'form-control input-form pull-right',"id"=>"datepicker"])?>
-            </div>
-            
+            <?= Form::select('phongban_id', $phongban,null,['class' => 'form-control input-form'])?>
           </div>
         </div>
+
+
         <div class="row">
           <div class="col-md-offset-10 col-md-1">
             <?= Form::submit('Submit',['class' => 'btn btn-success'])?>

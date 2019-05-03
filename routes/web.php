@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 		Route::get('/delete/{id}', 'NhansuController@destroy')->where('id', '[0-9]+');
 		Route::match(['get', 'post'], '/update/{id}', 'NhansuController@update')->where('id', '[0-9]+');
 		Route::get('/create', 'NhansuController@create');
-		Route::post('/create', 'NhansuController@store');
+		Route::post('/store', 'NhansuController@store');
 	});
 
 
@@ -36,10 +36,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 		Route::get('/create', 'ChamcongController@create');
 		Route::get('/keeping', 'ChamcongController@keeping');
 		Route::get('/delete/{id}', 'ChamcongController@destroy');
-		// Route::get('/show/{id}', 'NhansuController@show')->where('id', '[0-9]+');
-		// Route::match(['get', 'post'], '/update/{id}', 'NhansuController@update')->where('id', '[0-9]+');
-		// Route::get('/create', 'NhansuController@create');
-		// Route::post('/create', 'NhansuController@store');
 	});
 	Route::get('/autocomplete', 'ChamcongController@autocomplete')->name('autocomplete');
 
@@ -68,17 +64,28 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 	});
 
 	Route::group(['prefix' => 'phongban'],function(){
-		Route::get('/', 'PhongbanController@index');
+		Route::get('/', 'PhongbanController@index')->name('phongbanindex');
 		Route::match(['get', 'post'], '/create/', 'PhongbanController@create');
 		Route::get('/show/{id}', 'PhongbanController@show')->where('id', '[0-9]+');
 		Route::match(['get', 'post'], '/update/{id}', 'PhongbanController@update')->where('id','[0-9]+');
+		Route::get('/delete/{id}', 'PhongbanController@destroy');
 	});
 
 	Route::group(['prefix' => 'sobaohiem'],function(){
-		Route::get('/', 'SobaohiemController@index');
+		Route::get('/', 'SobaohiemController@index')->name('sobaohiemindex');
 		Route::match(['get', 'post'], '/create/', 'SobaohiemController@create');
 		Route::get('/show/{id}', 'SobaohiemController@show')->where('id', '[0-9]+');
 		Route::match(['get', 'post'], '/update/{id}', 'SobaohiemController@update')->where('id','[0-9]+');
+		Route::post('/create', 'SobaohiemController@store');
+		Route::get('/delete/{id}', 'SobaohiemController@destroy');
+	});
+
+	Route::group(['prefix' => 'hopdong'],function(){
+		Route::get('/', 'HopdongController@index')->name('hopdongindex');
+		Route::match(['get', 'post'], '/create/', 'HopdongController@create');
+		Route::get('/show/{id}', 'HopdongController@show')->where('id', '[0-9]+');
+		Route::match(['get', 'post'], '/update/{id}', 'HopdongController@update')->where('id','[0-9]+');
+		Route::get('/delete/{id}', 'HopdongController@destroy');
 	});
 
 	Route::get('/reset','DasController@reset')->name('reset');

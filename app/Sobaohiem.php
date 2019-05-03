@@ -25,6 +25,11 @@ class Sobaohiem extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    // public static $rules = [
+    //     'nhansu_id' => 'required|email|unique:nhansus',
+    //     'ma_sbh' => 'required|unique:nhansus',
+    // ];
+
     public function nhansus()
     {
         return $this->belongsTo('App\Nhansu', 'nhansu_id');

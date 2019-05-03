@@ -57,6 +57,20 @@
           </a>
         </li>
 
+        <li class="treeview {{(\Request::route()->getName() == 'sobaohiem') ? 'active' : ''}} ">
+          <a href="/admin/sobaohiem">
+            <i class="fa fa-files-o"></i>
+            <span>QUẢN LÝ BẢO HIỂM</span>
+          </a>
+        </li>
+
+        <li class="treeview {{(\Request::route()->getName() == 'hopdong') ? 'active' : ''}} ">
+          <a href="/admin/hopdong">
+            <i class="fa fa-files-o"></i>
+            <span>QUẢN LÝ HỢP ĐỒNG</span>
+          </a>
+        </li>
+
         <?php if (Auth::user()->rule == 1): ?>
             <li class="treeview {{(\Request::route()->getName() == 'user') ? 'active' : ''}} ">
               <a href="/admin/user">

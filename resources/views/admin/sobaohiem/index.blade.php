@@ -41,7 +41,6 @@
 									<td>{{$sobaohiem->noi_cap}}</td>
 									<td>{{$sobaohiem->note}}</td>
 									<td>
-										<a href="/admin/sobaohiem/show/{{$sobaohiem->id}}" ><i class="fas fa-eye"></i></a> 
 										<a href="/admin/sobaohiem/update/{{$sobaohiem->id}}" ><i class="fas fa-pencil-alt"></i></a>
 										<a href="/admin/sobaohiem/delete/{{$sobaohiem->id}}" ><i class="fas fa-trash-alt"></i></a>
 									</td>

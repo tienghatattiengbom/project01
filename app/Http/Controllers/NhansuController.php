@@ -42,17 +42,21 @@ class NhansuController extends Controller
                 $model_nhansu->birthday = date('Y-m-d H:i:s', strtotime($request->input('birthday')));
                 $model_nhansu->sex = $request->input('sex');
                 $model_nhansu->salary_basic = implode('', explode(',', $request->input('salary_basic')));
-                $model_nhansu->start_date = date('Y-m-d',strtotime($request->input('start_date')));
+                $model_nhansu->phongban_id = $request->input('phongban_id');
 
                 $model_nhansu->save();
                 \Session::flash('success','Tạo mới thành công');
             }
             catch(\Exception $e){
                echo "<pre>"; echo $e->getMessage(); die;  // insert query
-            }   
+            }
             return redirect('/admin/nhansu');
         }
-        return view('admin.nhansu.create');
+        $model_phongban = new \App\Phongban();
+        $phongban = $model_phongban->pluck('ten_phongban','id');
+        return view('admin.nhansu.create',[
+            'phongban' => $phongban
+            ]);
     }
 
     /**
@@ -132,7 +136,9 @@ class NhansuController extends Controller
             return redirect('/admin/nhansu');
             
         }
-        return view('admin.nhansu.update',['nhansu' => $nhansu]);
+        $model_phongban = new \App\Phongban();
+        $phongban = $model_phongban->pluck('ten_phongban','id');
+        return view('admin.nhansu.update',['nhansu' => $nhansu,'phongban'=>$phongban]);
     }
 
     /**

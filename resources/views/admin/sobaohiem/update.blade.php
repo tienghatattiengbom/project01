@@ -8,13 +8,13 @@
 <section class="content row">
 	<div class="col-md-12" style="padding: 0px">
 		<div class="box box-primary" style="padding-bottom: 10px">
-			{!! Form::open(['method' => 'POST', 'url' => '/admin/sobaohiem/create']) !!}
+			{!! Form::open(['method' => 'POST', 'url' => '/admin/sobaohiem/update/'.$sobaohiem->id]) !!}
 				<div class="form-group row" style="margin-top: 20px">
 					<div class="col-md-3 label-form">
 						<?= Form::label('nhansu_id', 'Nhân viên') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::select('nhansu_id', $nhanvien,null,['class' => 'form-control input-form'])?>
+						<?= Form::select('nhansu_id',$nhanvien,$sobaohiem->nhansu_id,['class' => 'form-control input-form'])?>
 					</div>
 				</div>
 
@@ -23,7 +23,7 @@
 						<?= Form::label('ma_sbh', 'Mã sổ bảo hiểm') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('ma_sbh',null,['class' => 'form-control input-form','required'=>'required']) ?>
+						<?= Form::text('ma_sbh',$sobaohiem->ma_sbh,['class' => 'form-control input-form','required'=>'required']) ?>
 					</div>
 				</div>
 
@@ -32,7 +32,7 @@
 						<?= Form::label('ngay_cap', 'Ngày Cấp (YYYY-mm-dd)') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('ngay_cap',null,['class' => 'form-control input-form','required'=>'required','id'=>'datemask']) ?>
+						<?= Form::text('ngay_cap',$sobaohiem->ngay_cap,['class' => 'form-control input-form','required'=>'required','id'=>'datemask']) ?>
 					</div>
 				</div>
 
@@ -41,7 +41,7 @@
 						<?= Form::label('noi_cap', 'Nơi Cấp') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('noi_cap',null,['class' => 'form-control input-form','required'=>'required']) ?>
+						<?= Form::text('noi_cap',$sobaohiem->noi_cap,['class' => 'form-control input-form','required'=>'required']) ?>
 					</div>
 				</div>
 
@@ -50,7 +50,7 @@
 						<?= Form::label('note', 'Ghi chú') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::text('note',null,['class' => 'form-control input-form']) ?>
+						<?= Form::text('note',$sobaohiem->note,['class' => 'form-control input-form']) ?>
 					</div>
 				</div>
 

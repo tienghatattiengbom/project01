@@ -90,7 +90,7 @@ class PhongBanController extends Controller
     {
         if ($request->isMethod('post')) {
             try {
-                $model_phongban = new \App\Phongban();
+                $model_phongban = \App\Phongban::findOrFail($id);
                 $model_phongban->ten_phongban = $request->input('ten_phongban');
                 $model_phongban->ma_phongban = $request->input('ma_phongban');
                 $model_phongban->sdt_phongban = $request->input('sdt_phongban');
@@ -116,6 +116,8 @@ class PhongBanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\Phongban::destroy($id);
+        \Session::flash('success','Xóa thành công');
+        return redirect(route('phongbanindex'));
     }
 }
