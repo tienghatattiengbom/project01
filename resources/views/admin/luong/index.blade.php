@@ -19,6 +19,45 @@
 	<div class="box-button">
 		<a href="/admin/luong/create" class="btn btn-success add-employees"> <i class="fas fa-user-plus"></i> Tính lương</a>
 	</div>
+
+	<div class="row">
+		{!! Form::open(['method' => 'GET', 'url' => '/admin/luong/index']) !!}
+		<div class="col-xs-6">
+			<div class="form-group row">
+				<div class="col-md-3 label-form">
+					<?= Form::label('year', 'Năm') ?>
+				</div>
+				<?php
+					for ($i=2018; $i <2022 ; $i++) { 
+						$year[$i] = $i;
+					}
+				?>
+				<div class="col-md-8">
+					<?= Form::select('year', $year,!empty($_GET['year']) ? $_GET['year'] : null,['class' => 'form-control input-form', 'placeholder' => '--- Chọn Năm ---'])?>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class="form-group row">
+				<div class="col-md-3 label-form">
+					<?= Form::label('month', 'Tháng') ?>
+				</div>
+				<div class="col-md-8">
+					<?php
+						for ($i=1; $i <13 ; $i++) { 
+							$month[$i] = $i;
+						}
+					?>
+					<?= Form::select('month', $month,!empty($_GET['month']) ? $_GET['month'] : null,['class' => 'form-control input-form','placeholder' => '--- Chọn Tháng ---'])?>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-offset-10 col-xs-1">
+            <?= Form::submit('Tìm Kiếm',['class' => 'btn btn-success'])?>
+          </div>
+		{{ Form::close() }}
+	</div>
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">

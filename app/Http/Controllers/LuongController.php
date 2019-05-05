@@ -13,8 +13,21 @@ class LuongController extends Controller
      */
     public function index()
     {
-        $model_luong = new \App\Luong();
-        $luongs = $model_luong->orderBy('id','desc')->get();
+        $query = new \App\Luong();
+        $luong = $query->orderBy('id','desc')->get();
+        if (isset($_GET['year']) && !empty($_GET['year'])) {
+            $year = $_GET['year'];
+            $luong = $query->whereYear('date', '=', "$year")->get();
+        }
+
+        if (!empty($_GET['month'])) {
+            $month = $_GET['month'];
+            $luong = $query->whereMonth('date', '=', "$month")->get();
+        }
+
+        if (isset($_GET['month']) && !empty($_GET['month']) && isset($_GET['year']) && !empty($_GET['year']) ) {
+            $luong = $query->whereYear('date', '=', "$year")->whereMonth('date', '=', "$month")->get();
+        }
 
         return view('admin.luong.index', compact('luongs'));
     }
