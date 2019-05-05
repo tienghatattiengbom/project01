@@ -36,7 +36,7 @@
 								<td>{{$user->name}}</td>
 								<td>{{$user->email}}</td>
 								<td>
-									@if($user->rule == 0)
+									@if($user->rule == 2)
 										Nhân Viên
 									@else
 										Admin

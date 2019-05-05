@@ -13,7 +13,7 @@ class SobaohiemController extends Controller
      */
     public function index()
     {
-        $sobaohiem = \App\Sobaohiem::get();
+        $sobaohiem = \App\Sobaohiem::orderBy('id','desc')->get();
         return view('admin.sobaohiem.index',[
             'sobaohiems' => $sobaohiem
         ]);

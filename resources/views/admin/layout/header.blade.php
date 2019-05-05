@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="/admin" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>QL</b>CC</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Quản Lý </b>Chấm Công</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -41,9 +41,11 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
+              <?php if (Auth::user()->rule == 1): ?>
                 <div class="pull-left">
                   <a href="{{route('reset')}}" class="btn btn-default btn-flat">Rs hệ thống</a>
                 </div>
+              <?php endif ?>
                 <div class="pull-right">
                   <a class="btn btn-default btn-flat" href="{{ route('logout') }}" class = "" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}

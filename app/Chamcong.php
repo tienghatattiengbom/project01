@@ -17,7 +17,7 @@ class Chamcong extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nhansu_id', 'start_time', 'end_time', 'note'];
+    protected $fillable = ['nhansu_id','date','start_time', 'end_time', 'note',];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

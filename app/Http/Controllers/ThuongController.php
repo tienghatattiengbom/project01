@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ThuongController extends Controller
 {
@@ -13,8 +14,21 @@ class ThuongController extends Controller
      */
     public function index()
     {
-        $model_thuong = new \App\Thuong();
-        $thuong = $model_thuong->get();
+        $query = new \App\Thuong();
+        $thuong = $query->get();
+        if (isset($_GET['year']) && !empty($_GET['year'])) {
+            $year = $_GET['year'];
+            $thuong = $query->whereYear('date', '=', "$year")->get();
+        }
+
+        if (!empty($_GET['month'])) {
+            $month = $_GET['month'];
+            $thuong = $query->whereMonth('date', '=', "$month")->get();
+        }
+
+        if (isset($_GET['month']) && !empty($_GET['month']) && isset($_GET['year']) && !empty($_GET['year']) ) {
+            $thuong = $query->whereYear('date', '=', "$year")->whereMonth('date', '=', "$month")->get();
+        }
         return view('admin.thuong.index',[
             'thuongs' => $thuong
             ]);

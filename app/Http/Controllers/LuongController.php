@@ -14,7 +14,7 @@ class LuongController extends Controller
     public function index()
     {
         $model_luong = new \App\Luong();
-        $luongs = $model_luong->get();
+        $luongs = $model_luong->orderBy('id','desc')->get();
 
         return view('admin.luong.index', compact('luongs'));
     }

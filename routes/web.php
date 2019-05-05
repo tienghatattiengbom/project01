@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 
 	Route::group(['prefix' => 'nhansu'],function(){
 		Route::get('/', 'NhansuController@index')->name('nhansuindex');
+		Route::get('/index', 'NhansuController@index')->name('nhansuindex');
 		Route::get('/show/{id}', 'NhansuController@show')->where('id', '[0-9]+');
 		Route::get('/delete/{id}', 'NhansuController@destroy')->where('id', '[0-9]+');
 		Route::match(['get', 'post'], '/update/{id}', 'NhansuController@update')->where('id', '[0-9]+');
@@ -32,15 +33,21 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 
 
 	Route::group(['prefix' => 'chamcong'],function(){
+		Route::get('/checkin', 'ChamcongController@checkin');
+		Route::get('/checkout', 'ChamcongController@checkout');
 		Route::get('/', 'ChamcongController@index')->name('chamcongindex');
+		Route::get('/index', 'ChamcongController@index')->name('chamcongindex');
 		Route::get('/create', 'ChamcongController@create');
 		Route::get('/keeping', 'ChamcongController@keeping');
+		Route::get('/update/{id}', 'ChamcongController@update');
 		Route::get('/delete/{id}', 'ChamcongController@destroy');
+		
 	});
 	Route::get('/autocomplete', 'ChamcongController@autocomplete')->name('autocomplete');
 
 	Route::group(['prefix' => 'thuong'],function(){
 		Route::get('/', 'ThuongController@index')->name('thuongindex');
+		Route::get('/index', 'ThuongController@index');
 		Route::get('/create', 'ThuongController@create');
 		Route::get('/keeping', 'ThuongController@keeping');
 		Route::get('/show/{id}', 'ThuongController@show')->where('id', '[0-9]+');

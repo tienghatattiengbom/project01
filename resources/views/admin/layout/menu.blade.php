@@ -19,9 +19,10 @@
         <li class="header">QUẢN LÝ CHUNG</li>
         <li class="treeview">
           <a href="/admin">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>QUẢN LÝ CHUNG</span>
           </a>
         </li>
+        <?php if (Auth::user()->rule == 1): ?>
         <li class="treeview {{(\Request::route()->getName() == 'nhansu') ? 'active' : ''}} ">
           <a href="/admin/nhansu">
             <i class="fa fa-files-o"></i>
@@ -71,7 +72,7 @@
           </a>
         </li>
 
-        <?php if (Auth::user()->rule == 1): ?>
+        
             <li class="treeview {{(\Request::route()->getName() == 'user') ? 'active' : ''}} ">
               <a href="/admin/user">
                 <i class="fa fa-files-o"></i>

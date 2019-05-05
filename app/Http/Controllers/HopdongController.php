@@ -13,7 +13,7 @@ class HopdongController extends Controller
      */
     public function index()
     {
-        $hopdong = \App\Hopdong::get();
+        $hopdong = \App\Hopdong::orderBy('id','desc')->get();
         return view('admin.hopdong.index',[
             'hopdongs' => $hopdong
             ]);

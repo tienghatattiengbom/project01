@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Nhansu;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Http\Request;
+use App\User;
 
 class NhansuController extends Controller
 {
@@ -13,12 +15,22 @@ class NhansuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $phongban = \App\Phongban::pluck('ten_phongban','id');
+        $conditions = [];
+        if (!empty($_GET['name'])) {
+            $name = $_GET['name'];
+            $conditions[] = ['name','LIKE',"%$name%"];
+        }
+
+        if (!empty($_GET['phong_ban'])) {
+            $phong_ban = $_GET['phong_ban'];
+            $conditions[] = ['phongban_id',"$phong_ban"];
+        }
         $model_nhansu = new Nhansu();
-        $nhansus = $model_nhansu->get();
-        // return $view->render();
-        return view('admin.nhansu.index', compact('nhansus'));
+        $nhansus = $model_nhansu->where($conditions)->orderBy('id','desc')->get();
+        return view('admin.nhansu.index', compact('nhansus','phongban'));
     }
 
     /**
@@ -43,8 +55,15 @@ class NhansuController extends Controller
                 $model_nhansu->sex = $request->input('sex');
                 $model_nhansu->salary_basic = implode('', explode(',', $request->input('salary_basic')));
                 $model_nhansu->phongban_id = $request->input('phongban_id');
-
                 $model_nhansu->save();
+                // add new acc
+                User::create([
+                    'name' => $model_nhansu->name,
+                    'email' => $model_nhansu->email,
+                    'password' => Hash::make($model_nhansu->phone),
+                    'rule' => 2,
+                    'nhansu_id' => $model_nhansu->id,
+                ]);
                 \Session::flash('success','Tạo mới thành công');
             }
             catch(\Exception $e){
@@ -128,6 +147,7 @@ class NhansuController extends Controller
                 $nhansu->email = $request->input('email');
                 $nhansu->birthday = date('Y-m-d H:i:s', strtotime($request->input('birthday')));
                 $nhansu->sex = $request->input('sex');
+                $nhansu->phongban_id = $request->input('phongban_id');
                 $nhansu->save();
                 \Session::flash('success','Update thành công');
             } catch (Exception $e) {

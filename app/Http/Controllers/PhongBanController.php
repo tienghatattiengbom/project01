@@ -13,7 +13,7 @@ class PhongBanController extends Controller
      */
     public function index()
     {
-        $phongban = \App\PhongBan::get();
+        $phongban = \App\PhongBan::orderBy('id','desc')->get();
         return view('admin.phongban.index',[
             'phongbans' => $phongban
         ]);
