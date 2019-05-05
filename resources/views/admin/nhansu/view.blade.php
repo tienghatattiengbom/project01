@@ -63,6 +63,36 @@
 					</div>
 				</div>
 				<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-3 title-row">
+						Chứng Minh Thư
+					</div>
+					<div class="col-md-9 content-row">
+						{{$nhansu->cmt}}
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-3 title-row">
+						Trình Độ Học Vấn
+					</div>
+					<?php 
+						$hoc_van = [
+			              '1' => 'Phổ Thông',
+			              '2' => 'Cao Đẳng',
+			              '3' => 'Đại học',
+			              '4' => 'Thạc Sĩ',
+			              '5' => 'Tiến Sĩ',
+			            ];
+					?>
+					<div class="col-md-9 content-row">
+						{{$hoc_van[$nhansu->hoc_van]}}
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
 				<div class="row">
 					<div class="col-md-3 title-row">
 						Giới tính
@@ -75,6 +105,43 @@
 						@endif
 					</div>
 				</div>
+				<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-3 title-row">
+						Phòng Ban
+					</div>
+					<div class="col-md-9 content-row">
+						{{$nhansu->phongban->ten_phongban}}
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-3 title-row">
+						Sổ Bảo Hiểm
+					</div>
+					<div class="col-md-9 content-row">
+						<?php 
+							$sobaohiem = $nhansu->sobaohiem->toArray();
+							echo @$sobaohiem[0]['ma_sbh'];
+						?>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-3 title-row">
+						Số Hợp Đồng
+					</div>
+					<div class="col-md-9 content-row">
+						<?php 
+							$sohopdong = $nhansu->hopdong->toArray();
+							echo @$sohopdong[0]['ma_hd'];
+						?>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 </section>

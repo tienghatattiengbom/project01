@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 class PhongBanController extends Controller
 {
@@ -27,7 +28,13 @@ class PhongBanController extends Controller
     public function create(Request $request)
     {
         if ($request->isMethod('post')) {
+            $this->validate($request,[
+                    'sdt_phongban' => 'max:10',
+                ],[
+                    'sdt_phongban.max' => 'errors',
+                ]);
             try {
+
                 $model_phongban = new \App\Phongban();
                 $model_phongban->ten_phongban = $request->input('ten_phongban');
                 $model_phongban->ma_phongban = $request->input('ma_phongban');

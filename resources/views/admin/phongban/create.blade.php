@@ -32,7 +32,7 @@
 						<?= Form::label('sdt_phongban', 'Số Điện Thoại Phòng Ban') ?>
 					</div>
 					<div class="col-md-8">
-						<?= Form::input('number','sdt_phongban',null,['class' => 'form-control input-form','required'=>'required','maxlength' => '10']) ?>
+						<?= Form::input('number','sdt_phongban',null,['class' => 'form-control input-form','required'=>'required','maxlength'=>'10']) ?>
 					</div>
 				</div>
 

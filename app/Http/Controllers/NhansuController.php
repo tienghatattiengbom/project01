@@ -54,6 +54,8 @@ class NhansuController extends Controller
                 $model_nhansu->birthday = date('Y-m-d H:i:s', strtotime($request->input('birthday')));
                 $model_nhansu->sex = $request->input('sex');
                 $model_nhansu->salary_basic = implode('', explode(',', $request->input('salary_basic')));
+                $model_nhansu->cmt = $request->input('cmt');
+                $model_nhansu->hoc_van = $request->input('hoc_van');
                 $model_nhansu->phongban_id = $request->input('phongban_id');
                 $model_nhansu->save();
                 // add new acc
@@ -87,10 +89,11 @@ class NhansuController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'phone' => 'required|unique:nhansus|max:13',
+            'phone' => 'required|unique:nhansus|max:10',
             'email' => 'required|unique:nhansus|max:255',
         ],[
             'phone.unique' => 'Số điện thoại phải là duy nhất',
+            'phone.max' => 'Số điện thoại phải là 10 số',
             'email.unique' => 'Email phải là duy nhất',
         ]);
         return $this->create($request);
@@ -148,6 +151,8 @@ class NhansuController extends Controller
                 $nhansu->birthday = date('Y-m-d H:i:s', strtotime($request->input('birthday')));
                 $nhansu->sex = $request->input('sex');
                 $nhansu->phongban_id = $request->input('phongban_id');
+                $nhansu->cmt = $request->input('cmt');
+                $nhansu->hoc_van = $request->input('hoc_van');
                 $nhansu->save();
                 \Session::flash('success','Update thành công');
             } catch (Exception $e) {

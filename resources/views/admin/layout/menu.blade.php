@@ -22,6 +22,12 @@
             <i class="fa fa-dashboard"></i> <span>QUẢN LÝ CHUNG</span>
           </a>
         </li>
+        <li class="treeview {{(\Request::route()->getName() == 'luong') ? 'active' : ''}} ">
+          <a href="/admin/luong">
+            <i class="fa fa-files-o"></i>
+            <span>QUẢN LÝ LƯƠNG</span>
+          </a>
+        </li>
         <?php if (Auth::user()->rule == 1): ?>
         <li class="treeview {{(\Request::route()->getName() == 'nhansu') ? 'active' : ''}} ">
           <a href="/admin/nhansu">

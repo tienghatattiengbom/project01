@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']],function(){
 
 	Route::group(['prefix' => 'luong','as'=>'luong'],function(){
 		Route::get('/', 'LuongController@index');
+		Route::get('/index', 'LuongController@index');
 		Route::get('/keeping', 'LuongController@keeping');
 		Route::get('/show/{id}', 'LuongController@show')->where('id', '[0-9]+');
 		Route::match(['get', 'post'], '/update/{id}', 'LuongController@update')->where('id', '[0-9]+');

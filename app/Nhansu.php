@@ -20,12 +20,28 @@ class Nhansu extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'addrees', 'phone', 'email', 'birthday', 'sex','salary_basic','phongban_id' ,'created_at', 'updated_at'];
+    protected $fillable = ['name', 'addrees', 'phone', 'email', 'birthday', 'sex','salary_basic','cmt','hoc_van','phongban_id' ,'created_at', 'updated_at'];
     public static $rules = [
         'email' => 'sometimes|required|email|unique:nhansus',
         'phone' => 'sometimes|required|unique:nhansus',
     ];
 
+    public function phongban()
+    {
+        return $this->belongsTo('App\Phongban', 'phongban_id');
+    }
+
+    public function sobaohiem()
+    {
+        return $this->hasMany('App\Sobaohiem');
+    }
+
+    public function hopdong()
+    {
+        return $this->hasMany('App\Hopdong');
+    }
+
+    
     public static function boot(){
     	parent::boot();
     	

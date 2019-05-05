@@ -85,6 +85,33 @@
 
         <div class="form-group row">
           <div class="col-md-3 label-form">
+            <?= Form::label('hoc_van', 'Học Vấn') ?>
+          </div>
+          <?php 
+            $hoc_van = [
+              '1' => 'Phổ Thông',
+              '2' => 'Cao Đẳng',
+              '3' => 'Đại học',
+              '4' => 'Thạc Sĩ',
+              '5' => 'Tiến Sĩ',
+            ];
+          ?>
+          <div class="col-md-8">
+            <?= Form::select('hoc_van', $hoc_van,null,['class' => 'form-control input-form'])?>
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <div class="col-md-3 label-form">
+            <?= Form::label('cmt', 'Chứng Minh Thư') ?>
+          </div>
+          <div class="col-md-8">
+            <?= Form::text('cmt' ,null,['class' => 'form-control input-form'])?>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-3 label-form">
             <?= Form::label('salary_basic', 'Lương cơ bản') ?>
           </div>
           <div class="col-md-8">
@@ -94,7 +121,7 @@
 
         <div class="form-group row">
           <div class="col-md-3 label-form">
-            <?= Form::label('phongban_id', 'Giới tính') ?>
+            <?= Form::label('phongban_id', 'Phòng Ban') ?>
           </div>
           <div class="col-md-8">
             <?= Form::select('phongban_id', $phongban,null,['class' => 'form-control input-form'])?>

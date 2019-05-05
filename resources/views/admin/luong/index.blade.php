@@ -16,9 +16,12 @@
 </section>
 <!-- Main content -->
 <section class="content">
+<?php if (\Auth::user()->rule == 1): ?>
 	<div class="box-button">
 		<a href="/admin/luong/create" class="btn btn-success add-employees"> <i class="fas fa-user-plus"></i> Tính lương</a>
 	</div>
+<?php endif ?>
+	
 
 	<div class="row">
 		{!! Form::open(['method' => 'GET', 'url' => '/admin/luong/index']) !!}
@@ -72,15 +75,18 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach ($luongs as $luong)
-						    <tr>
-								<td>{{$luong->nhansus->name}}</td>
-								<td>{{date('m-Y', strtotime($luong->date))}}</td>
-								<td>{{number_format($luong->luong)}}</td>
-								<td>{{$luong->ngay_cong}}</td>
-							</tr>
-						@endforeach
-							
+						<?php if (!empty($luongs)): ?>
+							@foreach ($luongs as $luong)
+							    <tr>
+									<td>{{$luong->nhansus->name}}</td>
+									<td>{{date('m-Y', strtotime($luong->date))}}</td>
+									<td>{{number_format($luong->luong)}}</td>
+									<td>{{$luong->ngay_cong}}</td>
+								</tr>
+							@endforeach
+						<?php else: ?>
+							<tr><td>No data!</td></tr>
+						<?php endif ?>
 						</tbody>
 					</table>
 				</div>

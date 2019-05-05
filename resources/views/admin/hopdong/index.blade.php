@@ -36,7 +36,7 @@
 						<tbody>
 							@foreach ($hopdongs as $hopdong)
 								<tr>
-									<td>{{$hopdong->nhansus->name}}</td>
+									<td>{{isset($hopdong->nhansus->name) ? $hopdong->nhansus->name : 0}}</td>
 									<td>{{$hopdong->ma_hd}}</td>
 									<td>{{$hopdong->ten_hd}}</td>
 									<td>{{$hopdong->ngay_ki}}</td>

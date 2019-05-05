@@ -13,22 +13,39 @@ class LuongController extends Controller
      */
     public function index()
     {
-        $query = new \App\Luong();
-        $luong = $query->orderBy('id','desc')->get();
-        if (isset($_GET['year']) && !empty($_GET['year'])) {
-            $year = $_GET['year'];
-            $luong = $query->whereYear('date', '=', "$year")->get();
-        }
+        if (\Auth::user()->rule == 2) {
+            $query = new \App\Luong();
+            $luongs  = $query->orderBy('id','desc')->where('nhansu_id',\Auth::user()->nhansu_id)->get();
+            if (isset($_GET['year']) && !empty($_GET['year'])) {
+                $year = $_GET['year'];
+                $luongs = $query->whereYear('date', '=', "$year")->where('nhansu_id',\Auth::user()->nhansu_id)->get();
+            }
 
-        if (!empty($_GET['month'])) {
-            $month = $_GET['month'];
-            $luong = $query->whereMonth('date', '=', "$month")->get();
-        }
+            if (!empty($_GET['month'])) {
+                $month = $_GET['month'];
+                $luongs = $query->whereMonth('date', '=', "$month")->where('nhansu_id',\Auth::user()->nhansu_id)->get();
+            }
 
-        if (isset($_GET['month']) && !empty($_GET['month']) && isset($_GET['year']) && !empty($_GET['year']) ) {
-            $luong = $query->whereYear('date', '=', "$year")->whereMonth('date', '=', "$month")->get();
-        }
+            if (isset($_GET['month']) && !empty($_GET['month']) && isset($_GET['year']) && !empty($_GET['year']) ) {
+                $luongs = $query->whereYear('date', '=', "$year")->where('nhansu_id',\Auth::user()->nhansu_id)->whereMonth('date', '=', "$month")->get();
+            }
+        }else{
+            $query = new \App\Luong();
+            $luongs = $query->orderBy('id','desc')->get();
+            if (isset($_GET['year']) && !empty($_GET['year'])) {
+                $year = $_GET['year'];
+                $luongs = $query->whereYear('date', '=', "$year")->get();
+            }
 
+            if (!empty($_GET['month'])) {
+                $month = $_GET['month'];
+                $luongs = $query->whereMonth('date', '=', "$month")->get();
+            }
+
+            if (isset($_GET['month']) && !empty($_GET['month']) && isset($_GET['year']) && !empty($_GET['year']) ) {
+                $luongs = $query->whereYear('date', '=', "$year")->whereMonth('date', '=', "$month")->get();
+            }
+        }
         return view('admin.luong.index', compact('luongs'));
     }
 
@@ -39,8 +56,9 @@ class LuongController extends Controller
      */
     public function create(Request $request)
     {
+        // tinh luong
         if ($request->isMethod('post')) {
-
+            // kiem tra ngay cong
             $model_ngay_cong = new \App\Ngaycong();
             $thang_tinh_luong = $model_ngay_cong->whereMonth('thang',$request->input('month'))->whereYear('thang',$request->input('year'))->first();
             if (!empty($thang_tinh_luong)) {

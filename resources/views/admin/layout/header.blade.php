@@ -35,8 +35,8 @@
                 <img src="/admin_asset/dist/img/avatar04.png" class="img-circle" alt="User Image">
 
                 <p>
-                  Son
-                  <small>Member since Nov. 2012</small>
+                  Admin
+                  
                 </p>
               </li>
               <!-- Menu Footer-->

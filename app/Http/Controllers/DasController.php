@@ -10,7 +10,7 @@ class DasController extends Controller
         if (\Auth::user()->rule == 2) {
             $nhanvien = \App\Nhansu::findOrFail(\Auth::user()->nhansu_id);
             return view('admin.das.cus',[
-                'nhanvien' => $nhanvien,
+                'nhansu' => $nhanvien,
             ]);
         }else{
             $nhansu = \App\Nhansu::count();
